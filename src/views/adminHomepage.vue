@@ -1,6 +1,6 @@
 <template>
   <header_navbar></header_navbar>
-  <carousel_dashboard></carousel_dashboard>
+  <carousel_dashboard style="width:95% ;margin:auto; margin-bottom: 30px; border-radius:15px"></carousel_dashboard>
   <div
     style="
       width: 90%;
@@ -35,11 +35,11 @@
       <v-card
         class="mx-auto"
         max-width="200"
-        style="font-size: 16px; padding-bottom: 10px; box-shadow: 1px 1px 5px gray"
+        style="font-size: 16px; padding: 0px; box-shadow: 1px 1px 5px gray"
       >
         <v-img
-          style="box-shadow: 1px 1px 1px gray"
-          src="@/assets/test.jpg"
+          style="box-shadow: 1px 1px 1px gray; margin:10px 0px 20px 0px"
+          src="@/assets/thesis.png"
           height="220px"
         >
         </v-img>
@@ -100,8 +100,8 @@
         style="font-size: 16px; padding-bottom: 10px; box-shadow: 1px 1px 5px gray"
       >
         <v-img
-          style="box-shadow: 1px 1px 1px gray"
-          src="@/assets/test.jpg"
+          style="box-shadow: 1px 1px 1px gray; margin:10px 0px 20px 0px"
+          src="@/assets/thesis.png"
           height="220px"
         >
         </v-img>
@@ -162,22 +162,26 @@
         style="font-size: 16px; padding-bottom: 10px; box-shadow: 1px 1px 5px gray"
       >
         <v-img
-          style="box-shadow: 1px 1px 1px gray"
-          src="@/assets/test.jpg"
+          style="box-shadow: 1px 1px 1px gray; margin:10px 0px 20px 0px"
+          src="@/assets/thesis.png"
           height="220px"
         >
         </v-img>
-        <v-btn
-          elevation="1"
-          style="
-            margin-top: -20px;
-            font-family: Jazz LET, fantasy;
-            font-size: 12px;
-            background-color: orange;
-          "
-          max-width="100"
-          >Read more!</v-btn
-        >
+        <router-link  style="text-decoration: none" to="/detailPage">
+          <v-btn
+            elevation="1"
+            style="
+              margin-top: -20px;
+              font-family: Jazz LET, fantasy;
+              font-size: 12px;
+              background-color: orange;
+            "
+            max-width="100"
+            >
+            Read more!
+          </v-btn
+            >
+        </router-link>
         <v-card-subtitle style="color:	#000000">{{ thesis.title }}</v-card-subtitle>
         <v-expand-transition>
           <div v-show="show">
@@ -185,6 +189,14 @@
           </div>
         </v-expand-transition>
       </v-card>
+    </div>
+    <div style="display:flex; flex-wrap: wrap; margin:auto; margin-top:50px">
+      <v-img style="width:200px ; height: 150px" src="@/assets/architect.jpg"></v-img>
+      <v-img style="width:200px ; height: 150px" src="@/assets/chemistry.png"></v-img>
+      <v-img style="width:200px ; height: 150px" src="@/assets/GIC.png"></v-img>
+      <v-img style="width:200px ; height: 150px" src="@/assets/GGG.png"></v-img>
+      <v-img style="width:200px ; height: 150px" src="@/assets/GIM.jpg"></v-img>
+      <v-img style="width:200px ; height: 150px" src="@/assets/GEE.jpg"></v-img>
     </div>
   </div>
   <footer_dashboard></footer_dashboard>

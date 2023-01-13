@@ -9,24 +9,39 @@
     <div class="icons" id="search_icon">
       <v-img src="@/assets/search.png"></v-img>
     </div>
-    <form>
+    <v-btn
+      elevation="2"
+      class="search_bar_box"
+      style="
+        position: absolute;
+        width: 100px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        height: 51px;
+        right: 8px;
+        background-color: #0e426a;
+        color: orange;
+        padding: auto
+      "
+    > Search</v-btn>
+    <!-- <form>
       <div class="icons" id="dropdown_icon">
         <v-img src="@/assets/down-arrow.png"></v-img>
       </div>
       <select class="dropdown" id="search_dropdown">
         <option class="dropdown" style="border-radius: 20%" value="all">
-          All Departments
+          All Categoriess
         </option>
         <option class="dropdown" style="border-radius: 20%" value="GIC">GIC</option>
         <option class="dropdown" style="border-radius: 20%" value="GEE">GEE</option>
         <option class="dropdown" style="border-radius: 20%" value="GIM">GIM</option>
       </select>
-    </form>
+    </form> -->
   </div>
 </template>
 <style>
 .search_bar_container {
-  width: 55%;
+  width: 45%;
   font-size: 16px;
   color: grey;
   position: relative;
@@ -37,10 +52,11 @@
   border: 1px solid #b0a8a8;
   border-radius: 50px;
   cursor: pointer;
+  box-shadow: 1px 1px 1px gray;
   font-family: serif;
 }
 #search_bar_box {
-  position: absolute;
+  position: relative;
   padding-left: 50px;
   left: 0px;
 }
@@ -65,13 +81,13 @@
   cursor: pointer;
   font-family: serif;
 }
-#dropdown_icon{
+#dropdown_icon {
   position: absolute;
   top: 5px;
   right: 2.5%;
   cursor: pointer;
   width: 40px;
-  height:40px;
+  height: 40px;
 }
 #search_dropdown {
   right: 20%;

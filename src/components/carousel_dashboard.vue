@@ -11,7 +11,7 @@
     >
       <v-sheet
         :color="colors[i]"
-        height="100%"
+        height="120%"
       >
         <v-row
           class="fill-height"

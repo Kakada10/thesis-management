@@ -1,115 +1,163 @@
 <template>
-  <div class="Login_Background">
-    <div class="Login_Background_Pic">
-        <div class="Login_Box">
-            <div class="Login_Box_Text">
-                <b><p>Welcome!</p></b>
-                <input  type="text" id="login_input" v-model="email" placeholder="Email">
-                <input   type="password" id="login_input" v-model="password" placeholder="Password">
-                <div class="error_message" v-html="error"></div>
-                <p style="position: absolute; top: 160px; font-size:10px; right: 20px">Forgot Password</p>
-                    <button ref="input" @click="login" type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalCenter" id="button_login">
-                        Log in
-                    </button>
-            </div>
-        </div>
-        <!-- <img class="Login_Background_Logo" src="../assets/logo.png"> -->
-    </div>
-  </div>
+  <v-app id="inspire">
+    <v-content>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="8">
+            <v-card class="elevation-12">
+              <v-window v-model="step">
+                <v-window-item :value="1">
+                  <v-row>
+                    <v-col cols="12" md="8">
+                      <v-card-text class="mt-12">
+                        <h1 class="text-center display-2 teal--text text--accent-3">
+                          Sign in to Thesis
+                        </h1>
+                        <!-- <div class="text-center mt-4">
+                          <v-btn class="mx-2" fab color="black" outlined>
+                            <v-icon>fab fa-facebook-f</v-icon>
+                          </v-btn>
+
+                          <v-btn class="mx-2" fab color="black" outlined>
+                            <v-icon>fab fa-google-plus-g</v-icon>
+                          </v-btn>
+                          <v-btn class="mx-2" fab color="black" outlined>
+                            <v-icon>fab fa-linkedin-in</v-icon>
+                          </v-btn>
+                        </div> -->
+                        <h4 class="text-center mt-4">
+                          Ensure your email for registration
+                        </h4>
+                        <v-form>
+                          <v-text-field
+                            v-model="email"
+                            label="Email"
+                            name="Email"
+                            prepend-icon="email"
+                            type="text"
+                            color="teal accent-3"
+                          />
+
+                          <v-text-field
+                            v-model="password"
+                            id="password"
+                            label="Password"
+                            name="password"
+                            prepend-icon="lock"
+                            type="password"
+                            color="teal accent-3"
+                          />
+                        </v-form>
+                        <h3 class="text-center mt-4">Forgot your password ?</h3>
+                      </v-card-text>
+                      <div class="text-center mt-3 mb-10">
+                        <v-btn rounded color="teal accent-3" dark @click="login">SIGN IN</v-btn>
+                      </div>
+                    </v-col>
+                    <v-col cols="12" md="4" class="teal accent-me-3 bg-blue">
+                      <v-card-text class="white--text mt-12">
+                        <h1 class="text-center display-1">Hello, Admin!</h1>
+                        <h5 class="text-center">
+                          Enter your personal details and start with us
+                        </h5>
+                      </v-card-text>
+                      <div class="text-center">
+                        <v-btn rounded outlined dark @click="step++">SIGN UP</v-btn>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-window-item>
+                <v-window-item :value="2">
+                  <v-row class="fill-height">
+                    <v-col cols="12" md="4" class="teal accent-3">
+                      <v-card-text class="white--text mt-12">
+                        <h1 class="text-center display-1">Welcome Back!</h1>
+                        <h5 class="text-center">
+                          To Keep connected with us please login with your personnel info
+                        </h5>
+                      </v-card-text>
+                      <div class="text-center">
+                        <v-btn rounded outlined dark @click=login>Sign in</v-btn>
+                      </div>
+                    </v-col>
+                    <v-col cols="12" md="8">
+                      <v-card-text class="mt-12">
+                        <h1 class="text-center display-2 teal--text text--accent-3">
+                          Create Account
+                        </h1>
+                        <!-- <div class="text-center mt-4">
+                          <v-btn class="mx-2" fab color="black" outlined>
+                            <v-icon>fab fa-facebook-f</v-icon>
+                          </v-btn>
+
+                          <v-btn class="mx-2" fab color="black" outlined>
+                            <v-icon>fab fa-google-plus-g</v-icon>
+                          </v-btn>
+                          <v-btn class="mx-2" fab color="black" outlined>
+                            <v-icon>fab fa-linkedin-in</v-icon>
+                          </v-btn>
+                        </div> -->
+                        <h4 class="text-center mt-4">
+                          Ensure your email for registration
+                        </h4>
+                        <v-form>
+                          <v-text-field
+                            label="Name"
+                            name="Name"
+                            prepend-icon="person"
+                            type="text"
+                            color="teal accent-3"
+                          />
+                          <v-text-field
+                            label="Email"
+                            name="Email"
+                            prepend-icon="email"
+                            type="text"
+                            color="teal accent-3"
+                          />
+
+                          <v-text-field
+                            id="password"
+                            label="Password"
+                            name="password"
+                            prepend-icon="lock"
+                            type="password"
+                            color="teal accent-3"
+                          />
+                        </v-form>
+                      </v-card-text>
+                      <div class="text-center mt-n5 mb-10">
+                        <v-btn rounded color="teal accent-3" dark>SIGN UP</v-btn>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-window-item>
+              </v-window>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 <script>
-//  import axios from 'axios';
-//  import async from 'async--await';
-    export default {
-        data(){
-            return {
-                email: '',
-                password: '',
-                error: null
-            }
-        },
-        methods: {
-           async  login() { 
-                    // const url="http://localhost:3000/login";
-                    // axios.post(url,{email: this.email,password: this.password},{withCredentials:true})
-                    // .then(response => {
-                        
-                    //     if(response.data.user.role === "student"){
-                    //         window.localStorage.setItem('UserId',JSON.stringify(response.data.user.stuId));
-                    //         this.$router.push('/studentHomePage');
-                    //     }
-                    //     else if(response.data.user.role === "teacher"){
-                    //         window.localStorage.setItem('UserId',JSON.stringify(response.data.user.teacherId));
-                    //         this.$router.push('/teacherHomePage');
-                    //     }else{
-                    //         this.$router.push('/adminHomePage');
-                    //     }
-                    //     console.log(response);
-                    // }).catch((error) => {
-                    //     this.error = error.response.data.error;
-                    //     alert("The username and / or password is incorrect");   
-                    // });
-                    if(this.email=='admin' && this.password=='admin'){
-                        this.$router.push('/dashboard');
-                    }
-                }
-        }
-    };
+export default {
+  data: () => ({
+    step: 1,
+    email: "",
+    password: "",
+    error: null,
+  }),
+  props: {
+    source: String,
+  },
+  methods: {
+    async login() {
+      if(this.email==="admin"&&this.password==="admin"){
+        this.$router.push("/homepage");
+        console.log(this.email)
+      }
+    },
+  }
+};
 </script>
-
-<style>
-.error_message{
-    color:rgb(111, 28, 28);
-    font-size: 10px;
-}
-    .Login_Background{
-        margin-top: 40px;
-    }
-    #login_input{
-        width: 260px;
-        height: 40px;
-        font-size: 13px;
-        margin-top: 10px;
-        border-radius: 7px;
-        border: 1px solid black;
-    }
-    
-    #button_login{
-        width: 263px;
-        margin-top: 60px;
-        background-color: #13506A; 
-        color: white;
-    }
-    /* .Login_Background_Pic{
-        margin: auto;
-        position: relative; 
-        width: 800px;
-        height: 600px;
-        background-image: url("../assets/logo.png");
-        border-radius:20px;
-    } */
-    .Login_Box{
-        width: 300px;
-        height: 350px;
-        border: 2px solid black;
-        background-color: white;
-        border-radius: 10px;
-        top: 140px;
-        right: 50px;
-        position: absolute;
-    }
-    .Login_Background_Logo{
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        top: 140px;
-        left: 160px;
-    }
-    .Login_Box_Text{
-        position: absolute;
-        top: 25px;
-        color: black;
-        font-size: 25px;
-    }
-</style>
