@@ -1,10 +1,11 @@
 
 <template>
-    <body class="bodyContact">
+    <div style="width:100%; height:50px; margin-top: 0px; background-color: #0E426A"></div>
+    <body class="bodyContact" id="photo2">
     <!----body-->
     <section>
         <!---space-->
-        <div class="empty contact-section" >
+        <div class="empty contact-section">
             <section class="contact">
                 <div class="container-contact">
                     <div class="direct-contact-container">
@@ -64,12 +65,13 @@
     </section>
   </body>
 </template>
-
 <style scoped>
 .bodyContact {
     background: #fff;
 }
-
+#photo2{
+    background: url("@/assets/book2.jpg")
+}
 .listIcon {
     height: 25px;
 }
@@ -148,7 +150,7 @@
     width: 60%;
     height: 90%;
     padding: 40px;
-    background: rgb(51, 196, 216);
+    /* background: rgb(51, 196, 216); */
     border-radius: 0.9%;
 }
 input[type=submit]{

@@ -6,9 +6,6 @@
       class="search_bar_box"
       placeholder="search and hit enter ..."
     />
-    <div class="icons" id="search_icon">
-      <v-img src="@/assets/search.png"></v-img>
-    </div>
     <v-btn
       elevation="2"
       class="search_bar_box"
@@ -17,38 +14,27 @@
         width: 100px;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
-        height: 51px;
-        right: 8px;
+        height: 40px;
+        left: 1210px;
+        top:10px;
+        font-size:12px;
         background-color: #0e426a;
         color: orange;
         padding: auto
       "
     > Search</v-btn>
-    <!-- <form>
-      <div class="icons" id="dropdown_icon">
-        <v-img src="@/assets/down-arrow.png"></v-img>
-      </div>
-      <select class="dropdown" id="search_dropdown">
-        <option class="dropdown" style="border-radius: 20%" value="all">
-          All Categoriess
-        </option>
-        <option class="dropdown" style="border-radius: 20%" value="GIC">GIC</option>
-        <option class="dropdown" style="border-radius: 20%" value="GEE">GEE</option>
-        <option class="dropdown" style="border-radius: 20%" value="GIM">GIM</option>
-      </select>
-    </form> -->
   </div>
 </template>
 <style>
 .search_bar_container {
-  width: 45%;
+  width: 300px;
   font-size: 16px;
   color: grey;
   position: relative;
 }
 .search_bar_box {
   width: 97%;
-  height: 50px;
+  height: 40px;
   border: 1px solid #b0a8a8;
   border-radius: 50px;
   cursor: pointer;
@@ -57,8 +43,9 @@
 }
 #search_bar_box {
   position: relative;
-  padding-left: 50px;
-  left: 0px;
+  padding-left: 10px;
+  left: 1015px;
+  top:10px;
 }
 .search_bar_box:hover {
   border: 1px solid #ece3e3;
