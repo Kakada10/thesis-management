@@ -1,27 +1,11 @@
 <template>
   <header_navbar></header_navbar>
-  <carousel_dashboard style="width:95% ;margin:auto; margin-bottom: 30px; border-radius:15px"></carousel_dashboard>
-  <div
-    style="
-      width: 90%;
-      height: 50px;
-      display: flex;
-      flex-wrap: wrap;
-      border-radius: 5px;
-      margin-top: 0px;
-      margin-left: 5%;
-      background-color: #0e426a;
-    "
-  >
+  <carousel_dashboard
+    style="width: 95%; margin: auto; margin-bottom: 30px; border-radius: 15px"
+  ></carousel_dashboard>
+  <div class="box_status">
     <p
-      style="
-        color: orange;
-        margin-left: 3%;
-        margin-top: 0.5rem;
-        font-size: 20px;
-        font-family: serif;
-        cursor: pointer;
-      "
+      class="status"
     >
       New Arrivals
     </p>
@@ -32,143 +16,28 @@
       v-bind:key="i"
       style="width: 250px; padding: 20px"
     >
-      <v-card
+<v-card
         class="mx-auto"
-        max-width="200"
-        style="font-size: 16px; padding: 0px; box-shadow: 1px 1px 5px gray"
+        max-width="400"
+        height="330"
+        style="font-size: 16px;color: white; background-color: black; box-shadow: 1px 1px 5px gray; margin: 20px"
       >
-        <v-img
-          style="box-shadow: 1px 1px 1px gray; margin:10px 0px 20px 0px"
-          src="@/assets/thesis.png"
-          height="220px"
-        >
-        </v-img>
-        <v-btn
-          elevation="1"
+        <iframe
+          frameborder="0"
+          :src="thesis.image"
+          @click = "viewDetail(thesis)"
           style="
-            margin-top: -20px;
-            font-family: Jazz LET, fantasy;
-            font-size: 12px;
-            background-color: orange;
+            overflow: hidden;
+            margin-bottom: 0px;
+            width: 110%;
+            height: 100%;
+            margin-top: -60px;
+            margin-left: -14px;
+            margin-right: -30px;
           "
-          max-width="100"
-          >Read more!</v-btn
-        >
-        <v-card-subtitle style="color:	#000000">{{ thesis.title }}</v-card-subtitle>
-        <v-expand-transition>
-          <div v-show="show">
-            <v-divider></v-divider>
-          </div>
-        </v-expand-transition>
-      </v-card>
-    </div>
-  </div>
-  <div
-    style="
-      width: 90%;
-      height: 50px;
-      display: flex;
-      flex-wrap: wrap;
-      border-radius: 5px;
-      margin-top: 0px;
-      margin-left: 5%;
-      background-color: #0e426a;
-    "
-  >
-    <p
-      style="
-        color: orange;
-        margin-left: 3%;
-        margin-top: 0.5rem;
-        font-size: 20px;
-        font-family: serif;
-        cursor: pointer;
-      "
-    >
-      Popular
-    </p>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
-    <div
-      v-for="(thesis, i) in getThesis"
-      v-bind:key="i"
-      style="width: 250px; padding: 20px"
-    >
-      <v-card
-        class="mx-auto"
-        max-width="200"
-        style="font-size: 16px; padding-bottom: 10px; box-shadow: 1px 1px 5px gray"
-      >
-        <v-img
-          style="box-shadow: 1px 1px 1px gray; margin:10px 0px 20px 0px"
-          src="@/assets/thesis.png"
-          height="220px"
-        >
-        </v-img>
-        <v-btn
-          elevation="1"
-          style="
-            margin-top: -20px;
-            font-family: Jazz LET, fantasy;
-            font-size: 12px;
-            background-color: orange;
-          "
-          max-width="100"
-          >Read more!</v-btn
-        >
-        <v-card-subtitle style="color:	#000000">{{ thesis.title }}</v-card-subtitle>
-        <v-expand-transition>
-          <div v-show="show">
-            <v-divider></v-divider>
-          </div>
-        </v-expand-transition>
-      </v-card>
-    </div>
-  </div>
-  <div
-    style="
-      width: 90%;
-      height: 50px;
-      display: flex;
-      flex-wrap: wrap;
-      border-radius: 5px;
-      margin-top: 0px;
-      margin-left: 5%;
-      background-color: #0e426a;
-    "
-  >
-    <p
-      style="
-        color: orange;
-        margin-left: 3%;
-        margin-top: 0.5rem;
-        font-size: 20px;
-        font-family: serif;
-        cursor: pointer;
-      "
-    >
-      New Arrivals
-    </p>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
-    <div
-      v-for="(thesis, i) in getThesis"
-      v-bind:key="i"
-      style="width: 250px; padding: 20px"
-    >
-      <v-card
-        class="mx-auto"
-        max-width="200"
-        style="font-size: 16px; padding-bottom: 10px; box-shadow: 1px 1px 5px gray"
-      >
-        <v-img
-          style="box-shadow: 1px 1px 1px gray; margin:10px 0px 20px 0px"
-          src="@/assets/thesis.png"
-          height="220px"
-        >
-        </v-img>
-        <router-link  style="text-decoration: none" to="/detailPage">
+        ></iframe>
           <v-btn
+            @click = "viewDetail(thesis)"
             elevation="1"
             style="
               margin-top: -20px;
@@ -177,26 +46,124 @@
               background-color: orange;
             "
             max-width="100"
-            >
+          >
             Read more!
-          </v-btn
-            >
-        </router-link>
-        <v-card-subtitle style="color:	#000000">{{ thesis.title }}</v-card-subtitle>
-        <v-expand-transition>
-          <div v-show="show">
-            <v-divider></v-divider>
-          </div>
-        </v-expand-transition>
+          </v-btn>
+        <v-card-subtitle style=" font-size: 20px; font-family: serif">{{
+          thesis.title
+        }}</v-card-subtitle>
       </v-card>
     </div>
-    <div style="display:flex; flex-wrap: wrap; margin:auto; margin-top:50px">
-      <v-img style="width:200px ; height: 150px" src="@/assets/architect.jpg"></v-img>
-      <v-img style="width:200px ; height: 150px" src="@/assets/chemistry.png"></v-img>
-      <v-img style="width:200px ; height: 150px" src="@/assets/GIC.png"></v-img>
-      <v-img style="width:200px ; height: 150px" src="@/assets/GGG.png"></v-img>
-      <v-img style="width:200px ; height: 150px" src="@/assets/GIM.jpg"></v-img>
-      <v-img style="width:200px ; height: 150px" src="@/assets/GEE.jpg"></v-img>
+  </div>
+  <div class="box_status">
+    <p
+      class="status"
+    >
+      New Arrivals
+    </p>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
+    <div
+      v-for="(thesis, i) in getThesis"
+      v-bind:key="i"
+      style="width: 250px; padding: 20px"
+    >
+    <v-card
+        class="mx-auto"
+        max-width="400"
+        height="330"
+        style="font-size: 16px;color: white; background-color: black; box-shadow: 1px 1px 5px gray; margin: 20px"
+      >
+        <iframe
+          frameborder="0"
+          @click = "viewDetail(thesis)"
+          :src="thesis.image"
+          style="
+            overflow: hidden;
+            margin-bottom: 0px;
+            width: 110%;
+            height: 100%;
+            margin-top: -60px;
+            margin-left: -14px;
+            margin-right: -30px;
+          "
+        ></iframe>
+          <v-btn
+            elevation="1"
+            @click = "viewDetail(thesis)"
+            style="
+              margin-top: -20px;
+              font-family: Jazz LET, fantasy;
+              font-size: 12px;
+              background-color: orange;
+            "
+            max-width="100"
+          >
+            Read more!
+          </v-btn>
+        <v-card-subtitle style=" font-size: 20px; font-family: serif">{{
+          thesis.title
+        }}</v-card-subtitle>
+      </v-card>
+    </div>
+  </div>
+  <div class="box_status">
+    <p
+      class="status"
+    >
+      New Arrivals
+    </p>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
+    <div
+      v-for="(thesis, i) in getThesis"
+      v-bind:key="i"
+      style="width: 250px; padding: 20px"
+    >
+<v-card
+        class="mx-auto"
+        max-width="400"
+        height="330"
+        style="font-size: 16px;color: white; background-color: black; box-shadow: 1px 1px 5px gray; margin: 20px"
+      >
+        <iframe
+          frameborder="0"
+          :src="thesis.image"
+          style="
+            overflow: hidden;
+            margin-bottom: 0px;
+            width: 110%;
+            height: 100%;
+            margin-top: -60px;
+            margin-left: -14px;
+            margin-right: -30px;
+          "
+        ></iframe>
+          <v-btn
+            elevation="1"
+            @click = "viewDetail(thesis)"
+            style="
+              margin-top: -20px;
+              font-family: Jazz LET, fantasy;
+              font-size: 12px;
+              background-color: orange;
+            "
+            max-width="100"
+          >
+            Read more!
+          </v-btn>
+        <v-card-subtitle style=" font-size: 20px; font-family: serif">{{
+          thesis.title
+        }}</v-card-subtitle>
+      </v-card>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; margin: auto; margin-top: 50px">
+      <v-img style="width: 200px; height: 150px" src="@/assets/architect.jpg"></v-img>
+      <v-img style="width: 200px; height: 150px" src="@/assets/chemistry.png"></v-img>
+      <v-img style="width: 200px; height: 150px" src="@/assets/GIC.png"></v-img>
+      <v-img style="width: 200px; height: 150px" src="@/assets/GGG.png"></v-img>
+      <v-img style="width: 200px; height: 150px" src="@/assets/GIM.jpg"></v-img>
+      <v-img style="width: 200px; height: 150px" src="@/assets/GEE.jpg"></v-img>
     </div>
   </div>
   <footer_dashboard></footer_dashboard>
@@ -218,6 +185,9 @@ export default {
       title: null,
       category: null,
       getThesis: null,
+      getPopularThesis: null,
+      total: null,
+      image: [],
     };
   },
   mounted() {
@@ -228,8 +198,44 @@ export default {
       const url = "http://localhost:3000/admin/getAllThesis";
       const response = await axios.get(url, { withCredentials: true });
       this.getThesis = response.data;
-      console.log(this.getThesis);
+      this.total = response.data.length;
+      for (var i = 0; i < this.total; i++) {
+        this.image.push(
+          "data:" +
+            this.getThesis[i].thesis.contentType +
+            ";base64," +
+            this.getThesis[i].thesis.data
+        );
+      }
+      let k = 0;
+      this.getThesis.forEach((element) => {
+        (element.image = this.image[k]), k++;
+      });
     },
+    async viewDetail(thesis){
+      localStorage.setItem("thesis_id", thesis.thesis_id);
+      this.$router.push("/detailPage")
+    }
   },
 };
 </script>
+<style>
+.box_status {
+  width: 90%;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-left: 5%;
+  background-color: #0e426a;
+}
+.status {
+  color: orange;
+  margin-left: 3%;
+  margin-top: 0.5rem;
+  font-size: 20px;
+  font-family: serif;
+  cursor: pointer;
+}
+</style>

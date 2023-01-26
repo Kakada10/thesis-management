@@ -141,6 +141,7 @@
   </v-app>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     step: 1,
@@ -153,10 +154,14 @@ export default {
   },
   methods: {
     async login() {
-      if(this.email==="admin"&&this.password==="admin"){
-        this.$router.push("/homepage");
-        console.log(this.email)
-      }
+      const url="http://localhost:3000/";
+        axios
+          .post(url,{email: this.email,password: this.password},{withCredentials:true})
+          .then(response => {
+            console.log(response)
+            console.log(this.email)
+            this.$router.push("/homepage")
+          })
     },
   }
 };

@@ -1,6 +1,7 @@
 const {
     thesisTable
 } = require("../model/thesisDb");
+const fs = require("fs");
 
 exports.login = (req,res) => {
     res.send("Admin logined!")
@@ -16,8 +17,11 @@ exports.logout = (req,res) => {
         message: "logout successfully 😊 👌",
     });
 }
+
+
 exports.uploadThesis = async (req,res) => {
-    // var file = fs.readFileSync(req.file.path);
+    const path = "C:/Users/Rose/Desktop/ITC/Image Processing/" + req.body.name
+    var file = fs.readFileSync(path);
     const thesis = { 
         student_id: req.body.student_id,
         student_name: req.body.student_name,
@@ -25,20 +29,21 @@ exports.uploadThesis = async (req,res) => {
         department: req.body.department,
         thesis_id: req.body.thesis_id,
         title: req.body.title,
-        // thesis: {
-        //     data: new Buffer.from(file).toString('base64'),
-        //     contentType:req.file.mimetype,
-        // },
+        thesis: {
+            data: new Buffer.from(file).toString('base64'),
+            contentType:req.body.contentType,
+        },
         category: req.body.category,
         status: req.body.status,
         department: req.body.department,
         intern_year: req.body.intern_year,
         uploadAt: req.body.uploadAt
     }
-    await thesisTable.insertOne(thesis);
+    thesisTable.insertOne(thesis);
     console.log("New Report Added Successfully!");
     res.send("New Report Added Successfully!")
 }
+
 
 exports.getAllThesis = async (req,res) => {
     thesisTable.find({}).toArray(function(err, data) {

@@ -125,10 +125,7 @@
 <script>
 // import popup_form from './popup_form.vue';
 export default {
-  //   name: "popup_form",
-  //   components:{
-  //       popup_form
-  // },
+ 
   data() {
     return {
       dialog: false,
