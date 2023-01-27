@@ -59,7 +59,7 @@
         <p class="font-weight-black">Email :</p>
         <p class="font-weight-black">Upload At :</p>
         <v-btn color="secondary" @click="toggleModal" class="mr-10 mt-10">Edit</v-btn>
-        <button color="red mt-10" >Delete</button>
+        <v-btn color="red mt-10 mr-1" style="margin-left:-20px" @click="delete2">Delete</v-btn>
       </div>
       <div
         style="width: 100px; font-size:1.2rem; font-family: serif; height: 350px padding-top:20px; text-align: left"
@@ -134,56 +134,49 @@
     <div class="modal-content">
       <h1>Edit Information</h1>
       <form @submit.prevent="submit">
-        <v-text-field
+      <v-row style="margin-top:10px">
+         <v-text-field
           v-model="student_id"
           :counter="100"
           :error-messages="errors"
           label="Student ID"
-          height="100"
           required
+          style="padding-right: 20px"
         ></v-text-field>
-
         <v-text-field
           v-model="student_name"
           :counter="100"
-          height="100"
           :error-messages="errors"
           label="Student Name"
           required
         ></v-text-field>
-
-        <v-text-field
+      </v-row>
+      <v-row>
+         <v-text-field
           v-model="student_email"
           :counter="100"
-          height="100"
           :error-messages="errors"
           label="Student Email"
+          style="padding-right: 20px"
           required
         ></v-text-field>
 
         <v-text-field
           v-model="department"
           :counter="100"
-          height="100"
           :error-messages="errors"
           label="Department"
           required
         ></v-text-field>
+      </v-row>
 
-        <v-text-field
+      <v-row>
+         <v-text-field
           v-model="thesis_id"
           :counter="100"
-          height="100"
           :error-messages="errors"
           label="Thesis ID"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="title"
-          :counter="100"
-          :error-messages="errors"
-          label="title"
+          style="padding-right: 20px"
           required
         ></v-text-field>
 
@@ -194,30 +187,25 @@
           label="Category"
           required
         ></v-text-field>
-
+      </v-row>
+      <v-row>
         <v-text-field
+          v-model="title"
+          :counter="100"
+          :error-messages="errors"
+          label="Title"
+          required
+        ></v-text-field>
+      </v-row>
+      <v-row>
+         <v-text-field
           v-model="status"
           :counter="100"
           :error-messages="errors"
           label="Status"
           required
         ></v-text-field>
-
-        <v-text-field
-          v-model="intern_year"
-          :counter="100"
-          :error-messages="errors"
-          label="Intern Year"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="uploadAt"
-          :counter="100"
-          :error-messages="errors"
-          label="uploadAt"
-          required
-        ></v-text-field>
+      </v-row>
       </form>
     </div>
   </Modal>
@@ -250,8 +238,7 @@ export default {
     title: null,
     category: null,
     status: null,
-    intern_year: null,
-    uploadAt: null,
+    searchTxt:null
   }),
   mounted() {
     this.getAllThesis();
@@ -262,6 +249,12 @@ export default {
       modalActive.value = !modalActive.value;
     };
     return { modalActive, toggleModal };
+  },
+  watch: {
+    searchTxt: function () {
+      this.search(this.searchTxt);
+      // console.log(this.searchTxt);
+    },
   },
   methods: {
     reserve() {
@@ -301,11 +294,10 @@ export default {
         (this.thesis_id = this.chosenThesis.thesis_id),
         (this.title = this.chosenThesis.title),
         (this.category = this.chosenThesis.category),
-        (this.status = this.chosenThesis.status),
-        (this.intern_year = this.chosenThesis.intern_year),
-        (this.uploadAt = this.chosenThesis.uploadAt);
+        (this.status = this.chosenThesis.status)
       // localStorage.setItem("thesis_id", "");
     },
+    
     async update() {
       axios
         .put(
@@ -331,13 +323,18 @@ export default {
       alert ("Update successfully!")
       window.location.reload();
     },
-    async delete() {
+    async delete2() {
       axios
           .delete(
             "http://localhost:3000/admin/deleteThesis/"+this.thesis_id,
+            { withCredentials: true }
           )
       alert ("Are you sure you want to delete this Thesis?")
-      window.location.reload();
+      this.$router.push("/homepage")
+    },
+    async viewDetail(thesis){
+      localStorage.setItem("thesis_id", thesis.thesis_id);
+      this.$router.push("/detailPage")
     }
   },
 };

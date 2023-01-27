@@ -99,7 +99,7 @@ exports.searchThesis = async (req,res) => {
 
 
 exports.deleteThesis = (req,res) => {
-    thesisTable.deleteOne({thesis_id: req.params.student_email})
+    thesisTable.deleteOne({thesis_id: req.params.id})
     console.log("Report Delete Successfully!")
 }
 

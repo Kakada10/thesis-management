@@ -40,7 +40,7 @@
             "
             scope="col"
           >
-            Year
+            Category
           </th>
           <th
             style="
@@ -53,8 +53,8 @@
           >
             Title
           </th>
-          <th 
-           style="
+          <th
+            style="
               padding-bottom: 20px;
               padding-top: 5px;
               padding-left: 100px;
@@ -64,7 +64,7 @@
           ></th>
         </tr>
       </thead>
-      <tbody v-for="(item, i) in desserts" v-bind:key="i" id="getForm">
+      <tbody v-for="(thesis, i) in getThesis" v-bind:key="i" id="getForm">
         <td
           style="
             border-bottom: 1px solid lightgray;
@@ -74,7 +74,7 @@
             padding-right: 50px;
           "
         >
-          {{ item.id }}
+          {{ thesis.thesis_id }}
         </td>
         <td
           style="
@@ -85,7 +85,7 @@
             padding-right: 100px;
           "
         >
-          {{ item.department }}
+          {{ thesis.department }}
         </td>
         <td
           style="
@@ -96,7 +96,7 @@
             padding-right: 100px;
           "
         >
-          {{ item.year }}
+          {{ thesis.category }}
         </td>
         <td
           style="
@@ -107,13 +107,25 @@
             padding-right: 100px;
           "
         >
-          {{ item.title }}
+          {{ thesis.title }}
         </td>
         <td>
-          <v-btn class="float-right" style="margin-left:10px ; font-size:13px" depressed color="red darken-1">
+          <v-btn
+            class="float-right"
+            style="margin-left: 10px; font-size: 13px"
+            depressed
+            color="red darken-1"
+            @click = "delete2(thesis)"
+          >
             Delete
           </v-btn>
-          <v-btn class="float-right" style="margin:auto; font-size:13px; padding-left:10px" depressed color="teal lighten-1">
+          <v-btn
+            class="float-right"
+            style="margin: auto; font-size: 13px; padding-left: 10px"
+            depressed
+            color="teal lighten-1"
+            @click = "viewDetail(thesis)"
+          >
             Detail
           </v-btn>
         </td>
@@ -123,77 +135,56 @@
 </template>
 
 <script>
-// import popup_form from './popup_form.vue';
+import axios from "axios";
 export default {
- 
-  data() {
-    return {
-      dialog: false,
-      desserts: [
-        {
-          id: 1,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 2,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 3,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 4,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 5,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 6,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 7,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 8,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 9,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-        {
-          id: 10,
-          department: "GIC",
-          year: 2018,
-          title: "Lebrary Management",
-        },
-      ],
-    };
+    data() {
+      return {
+        dialog: false,
+        thesis_id: null,
+        department: null,
+        category: null,
+        title: null,
+        getThesis: null,
+        searchTxt:null
+    }
   },
-};
+  mounted() {
+    this.getAllThesis(); 
+  },
+  methods: {
+    async getAllThesis() {
+      const url = "http://localhost:3000/admin/getAllThesis";
+      const response = await axios.get(url, { withCredentials: true });
+      this.getThesis = response.data;
+      this.total = response.data.length;
+    },
+    async viewDetail(thesis){
+      localStorage.setItem("thesis_id", thesis.thesis_id);
+      this.$router.push("/detailPage")
+    },
+    async delete2(thesis_id) {
+      axios
+          .delete(
+            "http://localhost:3000/admin/deleteThesis/"+thesis_id,
+            { withCredentials: true }
+          )
+      alert ("Are you sure you want to delete this Thesis?")
+      this.$router.push("/thesisPage")
+    },
+     async search(thesis) {
+      const url = "http://localhost:3000/searchThesis/"+thesis;
+      if (this.searchTxt != null) {
+        const response = await axios.post(
+          url,
+          { search: thesis },
+          { withCredentials: true }
+        );
+        this.getThesis = response.data;
+        this.total = response.data.length;
+      }
+    },
+  },
+}
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@
     <button
       class="bt-modal"
       style="
-        background-color: green;
+        background-color: gray;
         padding: 10px;
         border: 1px solid gray;
         box-shadow: 1px 1px 2px grey;
@@ -16,16 +16,18 @@
     </button>
   </div>
   <listThesis></listThesis>
-   <Modal @close="toggleModal" @submitted="upload" :modalActive="modalActive">
-      <div class="modal-content">
-        <h1>Add New Information</h1>
-        <form @submit.prevent="submit">
+  <Modal @close="toggleModal" @submitted="upload" :modalActive="modalActive">
+    <div class="modal-content">
+      <h1>Add New Information</h1>
+      <form @submit.prevent="submit">
+        <v-row style="margin-top: 10px">
           <v-text-field
             v-model="student_id"
             :counter="100"
             :error-messages="errors"
             label="Student ID"
             required
+            style="padding-right: 20px"
           ></v-text-field>
 
           <v-text-field
@@ -35,12 +37,15 @@
             label="Student Name"
             required
           ></v-text-field>
+        </v-row>
 
+        <v-row>
           <v-text-field
             v-model="student_email"
             :counter="100"
             :error-messages="errors"
             label="Student Email"
+            style="padding-right: 20px"
             required
           ></v-text-field>
 
@@ -51,20 +56,14 @@
             label="Department"
             required
           ></v-text-field>
-
+        </v-row>
+        <v-row>
           <v-text-field
             v-model="thesis_id"
             :counter="100"
             :error-messages="errors"
             label="Thesis ID"
-            required
-          ></v-text-field>
-
-          <v-text-field
-            v-model="title"
-            :counter="100"
-            :error-messages="errors"
-            label="title"
+            style="padding-right: 20px"
             required
           ></v-text-field>
 
@@ -75,7 +74,17 @@
             label="Category"
             required
           ></v-text-field>
-
+        </v-row>
+        <v-row>
+          <v-text-field
+            v-model="title"
+            :counter="100"
+            :error-messages="errors"
+            label="Title"
+            required
+          ></v-text-field>
+        </v-row>
+        <v-row>
           <v-text-field
             v-model="status"
             :counter="100"
@@ -83,26 +92,11 @@
             label="Status"
             required
           ></v-text-field>
-
-          <v-text-field
-            v-model="intern_year"
-            :counter="100"
-            :error-messages="errors"
-            label="Intern Year"
-            required
-          ></v-text-field>
-
-          <v-text-field
-            v-model="uploadAt"
-            :counter="100"
-            :error-messages="errors"
-            label="uploadAt"
-            required
-          ></v-text-field>
-          <input type="file" id="addDocument" class="form-control-file" />
-        </form>
-      </div>
-    </Modal>
+        </v-row>
+        <input type="file" id="addDocument" class="form-control-file" />
+      </form>
+    </div>
+  </Modal>
 </template>
 
 <script>
@@ -157,7 +151,7 @@ export default {
             intern_year: this.intern_year,
             uploadAt: this.uploadAt,
             contentType: fileSelector.files[0].type,
-            name : fileSelector.files[0].name
+            name: fileSelector.files[0].name,
           },
           { withCredentials: true }
         )
@@ -165,7 +159,7 @@ export default {
           console.log(res);
         });
       this.toggleModal();
-      alert ("Update successfully!")
+      alert("Update successfully!");
       window.location.reload();
     },
   },

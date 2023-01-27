@@ -6,7 +6,7 @@
           <i @click="close" class="far fa-times-circle"></i>
           <!-- Modal Content -->
           <slot />
-          <button @click="close" type="button" style="background: red ; margin-right: 20px " >Cancel</button>
+          <button @click="close" type="button" style="background: red ; margin-right: 20px; margin-top:20px" >Cancel</button>
           <button @click="submit" type="button" >Submit</button>
         </div>
       </transition>
@@ -71,24 +71,23 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
 
   .modal-inner {
     position: relative;
     max-width: 500px;
-    width: 80%;
-    height: 600px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 500px;
+    height: 95%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.8), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     background-color: #fff;
-    padding: 10px;
-    
+    padding: 25px;
     i {
       position: absolute;
-      top: 15px;
+      top: 0px;
       right: 15px;
       font-size: 20px;
       cursor: pointer;
-      height: 100px;
+
       &:hover {
         color: crimson;
       }
