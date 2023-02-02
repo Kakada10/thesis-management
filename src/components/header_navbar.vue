@@ -5,7 +5,8 @@
             Institutional Technology of Cambodia<br>
             <v-subTitle>Thesis</v-subTitle>
         </v-title>
-        <search_bar style="position: absolute;"></search_bar>
+        <!-- <v-img style="right:40px; width: 20px;position: absolute; height:20; top: 20px; cursor: pointer"  src="@/assets/search2.png"></v-img> -->
+        <!-- <search_bar style="position: absolute;"></search_bar> -->
         <div class="text" style="margin:auto;position:relative; color: black">
             <v-row style="top:10px; ">
                 <router-link  style="text-decoration: none" to="/homepage">
@@ -26,12 +27,9 @@
 </template>
 
 <script>
-import search_bar from './search_bar.vue';
+// import search_bar from './search_bar.vue';
 export default {
     name: "header_navbar",
-    components:{
-        search_bar
-  },
 };
 </script>
 <style>
@@ -57,7 +55,7 @@ export default {
         box-shadow: 3px 5px 10px grey;
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 3%
+        margin-bottom: 10px;
     }
     .icon{
         width: 30px;

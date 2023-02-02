@@ -5,6 +5,8 @@ import detailPage from '../../src/views/detailPage.vue';
 import contactPage from '../../src/views/contactPage.vue';
 import thesisPage from '../../src/views/thesisPage.vue';
 import aboutusPage from '../../src/views/aboutusPage.vue';
+import thesisView from '../../src/views/thesisView.vue';
+
 
 const routes = [
     {
@@ -36,6 +38,11 @@ const routes = [
         path: '/aboutusPage',
         name: 'aboutusPage',
         component: aboutusPage
+    },
+    {
+        path: '/thesisView',
+        name: 'thesisView',
+        component: thesisView
     },
 ]
 

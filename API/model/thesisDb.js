@@ -16,7 +16,8 @@ const thesisTable = db.collection("thesis");
 //         data: Buffer,
 //         contentType:String
 //    },
-//    uploadAt: { type: Date, default: Date.now}
+//    uploadAt: { type: Date, default: Date.now},
+//    download: Integer
 // })
 
 // const thesisTable  = new mongoose.model("thesis", thesisSchema)

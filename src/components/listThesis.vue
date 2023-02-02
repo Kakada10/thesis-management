@@ -1,65 +1,44 @@
 <template>
   <!-- Text -->
-  <div style="display: flex; flex-wrap: wrap">
+  <div style="display: flex; flex-wrap: wrap; margin-top:10px">
     <h1 style="text-align: left; margin-left: 20px; margin-right: 940px">
       List of Thesis
     </h1>
+    <v-text-field
+        v-model="search"
+        label="Search"
+        single-line
+        hide-details
+        style="margin-left: 69%; width:400px; margin-bottom: 20px; position: absolute"
+  >
+  <v-img style="right:15px; width: 20px;position: absolute; height:20; top: 20px; cursor: pointer"  src="@/assets/search2.png"></v-img>
+  </v-text-field>
   </div>
   <div class="file_wrappers" id="getStudents2">
-    <table class="table table-hover" id="file_wrapper">
+    <table class="table table-hover" style="margin:auto">
       <thead class="thead-dark">
         <tr>
           <th
-            style="
-              padding-bottom: 20px;
-              padding-top: 5px;
-              padding-left: 100px;
-              padding-right: 50px;
-            "
             scope="col"
           >
-            ID
+            Thesis ID
           </th>
           <th
-            style="
-              padding-bottom: 20px;
-              padding-top: 5px;
-              padding-left: 100px;
-              padding-right: 100px;
-            "
             scope="col"
           >
             Department
           </th>
           <th
-            style="
-              padding-bottom: 20px;
-              padding-top: 5px;
-              padding-left: 100px;
-              padding-right: 100px;
-            "
             scope="col"
           >
             Category
           </th>
           <th
-            style="
-              padding-bottom: 20px;
-              padding-top: 5px;
-              padding-left: 100px;
-              padding-right: 100px;
-            "
             scope="col"
           >
             Title
           </th>
           <th
-            style="
-              padding-bottom: 20px;
-              padding-top: 5px;
-              padding-left: 100px;
-              padding-right: 100px;
-            "
             scope="col"
           ></th>
         </tr>
@@ -68,10 +47,7 @@
         <td
           style="
             border-bottom: 1px solid lightgray;
-            padding-bottom: 10px;
             padding-top: 5px;
-            padding-left: 100px;
-            padding-right: 50px;
           "
         >
           {{ thesis.thesis_id }}
@@ -112,7 +88,7 @@
         <td>
           <v-btn
             class="float-right"
-            style="margin-left: 10px; font-size: 13px"
+            style="margin-left: 10px; font-size: 12px; border-radius: 20px; padding:7px"
             depressed
             color="red darken-1"
             @click = "delete2(thesis)"
@@ -121,7 +97,7 @@
           </v-btn>
           <v-btn
             class="float-right"
-            style="margin: auto; font-size: 13px; padding-left: 10px"
+            style="margin: auto; font-size: 12px; border-radius: 20px; padding:7px"
             depressed
             color="teal lighten-1"
             @click = "viewDetail(thesis)"
@@ -145,7 +121,13 @@ export default {
         category: null,
         title: null,
         getThesis: null,
-        searchTxt:null
+        searchTxt:null,
+        search: null,
+    }
+  },
+  watch:{
+    search: function (){
+      this.searchThesis(this.search)
     }
   },
   mounted() {
@@ -171,12 +153,11 @@ export default {
       alert ("Are you sure you want to delete this Thesis?")
       this.$router.push("/thesisPage")
     },
-     async search(thesis) {
-      const url = "http://localhost:3000/searchThesis/"+thesis;
-      if (this.searchTxt != null) {
-        const response = await axios.post(
+    async searchThesis(thesis) {
+      const url = "http://localhost:3000/admin/searchThesis/"+thesis;
+      if (this.search != null) {
+        const response = await axios.get(
           url,
-          { search: thesis },
           { withCredentials: true }
         );
         this.getThesis = response.data;
@@ -203,7 +184,6 @@ export default {
   background-color: rgba(211, 211, 211, 0.1);
 }
 #getForm:hover {
-  background-color: rgba(0, 0, 0, 0.148);
   cursor: pointer;
   transition: margin-top 0.5s;
 }

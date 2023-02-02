@@ -4,11 +4,7 @@
     style="width: 95%; margin: auto; margin-bottom: 30px; border-radius: 15px"
   ></carousel_dashboard>
   <div class="box_status">
-    <p
-      class="status"
-    >
-      New Arrivals
-    </p>
+    <p class="status">New Arrivals</p>
   </div>
   <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
     <div
@@ -16,16 +12,22 @@
       v-bind:key="i"
       style="width: 250px; padding: 20px"
     >
-<v-card
+      <v-card
         class="mx-auto"
         max-width="400"
         height="330"
-        style="font-size: 16px;color: white; background-color: black; box-shadow: 1px 1px 5px gray; margin: 20px"
+        style="
+          font-size: 16px;
+          color: white;
+          background-color: teal;
+          box-shadow: 1px 1px 5px gray;
+          margin: 20px;
+        "
       >
         <iframe
           frameborder="0"
           :src="thesis.image"
-          @click = "viewDetail(thesis)"
+          @click="viewDetail(thesis)"
           style="
             overflow: hidden;
             margin-bottom: 0px;
@@ -36,47 +38,47 @@
             margin-right: -30px;
           "
         ></iframe>
-          <v-btn
-            @click = "viewDetail(thesis)"
-            elevation="1"
-            style="
-              margin-top: -20px;
-              font-family: Jazz LET, fantasy;
-              font-size: 12px;
-              background-color: orange;
-            "
-            max-width="100"
-          >
-            Read more!
-          </v-btn>
-        <v-card-subtitle style=" font-size: 20px; font-family: serif">{{
-          thesis.title
-        }}</v-card-subtitle>
+        <v-btn
+          @click="viewDetail(thesis)"
+          elevation="1"
+          style="
+            margin-top: -20px;
+            font-family: Jazz LET, fantasy;
+            font-size: 12px;
+            background-color: orange;
+          "
+          max-width="100"
+        >
+          Read more!
+        </v-btn>
+        <p style="font-size: 14px; font-family: serif">{{ thesis.title }}</p>
       </v-card>
     </div>
   </div>
   <div class="box_status">
-    <p
-      class="status"
-    >
-      New Arrivals
-    </p>
+    <p class="status">Most Popular</p>
   </div>
   <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
     <div
-      v-for="(thesis, i) in getThesis"
+      v-for="(thesis, i) in getPopularThesis"
       v-bind:key="i"
       style="width: 250px; padding: 20px"
     >
-    <v-card
+      <v-card
         class="mx-auto"
         max-width="400"
         height="330"
-        style="font-size: 16px;color: white; background-color: black; box-shadow: 1px 1px 5px gray; margin: 20px"
+        style="
+          font-size: 16px;
+          color: white;
+          background-color: teal;
+          box-shadow: 1px 1px 5px gray;
+          margin: 20px;
+        "
       >
         <iframe
           frameborder="0"
-          @click = "viewDetail(thesis)"
+          @click="viewDetail(thesis)"
           :src="thesis.image"
           style="
             overflow: hidden;
@@ -88,31 +90,25 @@
             margin-right: -30px;
           "
         ></iframe>
-          <v-btn
-            elevation="1"
-            @click = "viewDetail(thesis)"
-            style="
-              margin-top: -20px;
-              font-family: Jazz LET, fantasy;
-              font-size: 12px;
-              background-color: orange;
-            "
-            max-width="100"
-          >
-            Read more!
-          </v-btn>
-        <v-card-subtitle style=" font-size: 20px; font-family: serif">{{
-          thesis.title
-        }}</v-card-subtitle>
+        <v-btn
+          elevation="1"
+          @click="viewDetail(thesis)"
+          style="
+            margin-top: -20px;
+            font-family: Jazz LET, fantasy;
+            font-size: 12px;
+            background-color: orange;
+          "
+          max-width="100"
+        >
+          Read more!
+        </v-btn>
+        <p style="font-size: 14px; font-family: serif">{{ thesis.title }}</p>
       </v-card>
     </div>
   </div>
   <div class="box_status">
-    <p
-      class="status"
-    >
-      New Arrivals
-    </p>
+    <p class="status">Recommend</p>
   </div>
   <div style="display: flex; flex-wrap: wrap; margin-left: 3rem">
     <div
@@ -120,11 +116,17 @@
       v-bind:key="i"
       style="width: 250px; padding: 20px"
     >
-<v-card
+      <v-card
         class="mx-auto"
         max-width="400"
         height="330"
-        style="font-size: 16px;color: white; background-color: black; box-shadow: 1px 1px 5px gray; margin: 20px"
+        style="
+          font-size: 14px;
+          color: white;
+          background-color: teal;
+          box-shadow: 1px 1px 5px gray;
+          margin: 20px;
+        "
       >
         <iframe
           frameborder="0"
@@ -139,22 +141,20 @@
             margin-right: -30px;
           "
         ></iframe>
-          <v-btn
-            elevation="1"
-            @click = "viewDetail(thesis)"
-            style="
-              margin-top: -20px;
-              font-family: Jazz LET, fantasy;
-              font-size: 12px;
-              background-color: orange;
-            "
-            max-width="100"
-          >
-            Read more!
-          </v-btn>
-        <v-card-subtitle style=" font-size: 20px; font-family: serif">{{
-          thesis.title
-        }}</v-card-subtitle>
+        <v-btn
+          elevation="1"
+          @click="viewDetail(thesis)"
+          style="
+            margin-top: -20px;
+            font-family: Jazz LET, fantasy;
+            font-size: 12px;
+            background-color: orange;
+          "
+          max-width="100"
+        >
+          Read more!
+        </v-btn>
+        <p class="box_title">{{ thesis.title }}</p>
       </v-card>
     </div>
     <div style="display: flex; flex-wrap: wrap; margin: auto; margin-top: 50px">
@@ -185,7 +185,8 @@ export default {
       title: null,
       category: null,
       getThesis: null,
-      getPopularThesis: null,
+      getThesis2: null,
+      getPopularThesis: [],
       total: null,
       image: [],
     };
@@ -199,7 +200,7 @@ export default {
       const response = await axios.get(url, { withCredentials: true });
       this.getThesis = response.data;
       this.total = response.data.length;
-      for (var i = 0; i < this.total; i++) {
+      for (var i = 0; i <this.total ; i++) {
         this.image.push(
           "data:" +
             this.getThesis[i].thesis.contentType +
@@ -211,11 +212,27 @@ export default {
       this.getThesis.forEach((element) => {
         (element.image = this.image[k]), k++;
       });
+      this.getThesis = this.getThesis.slice().reverse()
+      this.getThesis2 = this.getThesis
+      for (let i = 0; i <this.total ; i++) {
+        let x = 0;
+        for (let u = 0; u<this.total ;u++ ){
+          if(this.getThesis2[i].download>this.getThesis2[u].download){
+            this.getPopularThesis[x] = this.getThesis2[i]
+            this.getThesis2[i].download = -1
+          }else if(this.getThesis2[i].download<this.getThesis2[u].download){
+            this.getPopularThesis[x] = this.getThesis2[u]
+            this.getThesis2[i].download = 1
+          }
+          x++
+        }
+        
+      }
     },
-    async viewDetail(thesis){
+    async viewDetail(thesis) {
       localStorage.setItem("thesis_id", thesis.thesis_id);
-      this.$router.push("/detailPage")
-    }
+      this.$router.push("/detailPage");
+    },
   },
 };
 </script>
@@ -228,14 +245,19 @@ export default {
   border-radius: 5px;
   margin-top: 0px;
   margin-left: 5%;
-  background-color: #0e426a;
+  background-color: teal;
 }
 .status {
-  color: orange;
+  color: white;
   margin-left: 3%;
   margin-top: 0.5rem;
   font-size: 20px;
   font-family: serif;
   cursor: pointer;
+}
+.box_title {
+  font-size: 14px;
+  font-family: serif;
+  color: white;
 }
 </style>

@@ -37,7 +37,8 @@ exports.uploadThesis = async (req,res) => {
         status: req.body.status,
         department: req.body.department,
         intern_year: req.body.intern_year,
-        uploadAt: req.body.uploadAt
+        uploadAt: req.body.uploadAt,
+        download: 0
     }
     thesisTable.insertOne(thesis);
     console.log("New Report Added Successfully!");
@@ -116,7 +117,8 @@ exports.updateThesis = (req,res) => {
             status: req.body.status,
             department: req.body.department,
             intern_year: req.body.intern_year,
-            uploadAt: req.body.uploadAt
+            uploadAt: req.body.uploadAt,
+            download: req.body.download
         }
     }
     thesisTable.updateOne({ thesis_id: req.params.id}, updateThesis);

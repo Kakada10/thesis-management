@@ -4,10 +4,13 @@
     <button
       class="bt-modal"
       style="
-        background-color: gray;
-        padding: 10px;
+        background-color: orange;
+        padding: 5px;
         border: 1px solid gray;
+        margin-top:10px;
         box-shadow: 1px 1px 2px grey;
+        font-family: serif;
+        color: black
       "
       @click="toggleModal"
       type="button"
@@ -78,7 +81,6 @@
         <v-row>
           <v-text-field
             v-model="title"
-            :counter="100"
             :error-messages="errors"
             label="Title"
             required
@@ -110,7 +112,7 @@ export default {
   components: {
     header_navbar,
     Modal,
-    listThesis,
+    listThesis
   },
   data() {
     return {
@@ -124,8 +126,8 @@ export default {
       status: null,
       intern_year: null,
       uploadAt: null,
-    };
-  },
+      }
+   },
   setup() {
     const modalActive = ref(false);
     const toggleModal = () => {
@@ -159,7 +161,7 @@ export default {
           console.log(res);
         });
       this.toggleModal();
-      alert("Update successfully!");
+      alert("Upload successfully!");
       window.location.reload();
     },
   },
